@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Questions Tab Example</title>
+    <style>
+      /* CSS */
+      html { 
+          background: url(https://clienttest.themailshark.net/images/page.jpg) no-repeat center center fixed; 
+          background-size: cover;
+      }
+
+      html, body {
+          position:relative;
+          padding:0px;
+          margin:0px;
+          font-family: 'Open Sans', sans-serif;
+          color: #354B85;
+      }
+
+      #content {
+        width:100vw;
+        height:100vh;
+        display:flex;
+        flex-direction: row;
+      }
+
+      #sidenav {
+        min-width:70px;
+        background-color: rgba(53, 75, 132, 0.9);
+        transition:.3s;
+      }
+
+      #main-content {
+        display:flex;
+        flex-direction:column;
+        align-items: flex-start;
+        justify-content: center;
+        width:100%;
+        min-height:100%;
+      }
+
+      #main-header {
+          display:flex;
+          flex-direction: row;
+          max-height:100px;
+          align-items: center;
+        }
+
+        #hamburger {
+          padding-left:20px;
+          max-width:25px;
+          fill: rgba(53, 75, 132, 0.9);
+        }
+
+        h3 {
+          display:inline-block;
+          font-weight: 400;
+          color: rgb(50, 72, 129);
+          font-size: 24px;
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+
+
+      #box {
+          display:inline-flex;
+          flex-direction: column;
+          background-color:white;
+          align-self:center;
+          width:calc(100% - 40px);
+          height:calc(100% - 40px);
+          flex: 1;
+          overflow: auto;
+          margin-bottom:20px;
+          box-shadow:0px 0px 20px #161E7566;
+      }
+
+      #tabs {
+            display:flex;
+            flex-direction:row;
+            align-items: center;
+            justify-content: center;
+            height:45px;
+        }
+
+      .tab {
+            width:100%;
+            height:100%;
+            text-align:center;
+            display:flex;
+            align-items: center;
+            justify-content: center;   
+            background-color:#FAFAFA;
+            box-shadow: inset 0px -11px 8px -10px #CCC;      
+            transition:.3s;           
+        }
+
+        .tab:hover {
+            cursor:no-drop;
+            background-color:white;
+        }
+        .selected {
+            background-color:white;
+            box-shadow: none; 
+        }
+
+        .selected:hover {
+            cursor: default;
+        }
+        .x {
+            width:300px;
+        }
+
+        .x:hover {
+            cursor:default;
+        }
+
+        .x > svg {
+            width:15px;
+        }
+
+        #thumb-area {
+            width:calc(100% - 25px);
+            height:calc(100% - 25px);
+            background-color:white;
+            border: 1px solid #dddddd;
+        }
+
+        #box-content {
+            display:flex;
+            flex-direction: row;
+            flex: 1;
+            overflow: auto;
+            width:100%;
+            height:100%;
+        }
+
+        #left {
+            min-width:350px;
+            max-width:400px;
+            width:50%;
+            display:flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #thumb {
+            width:94%;
+            padding:10px;
+        }
+
+        #thumb-area {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #larger-text {
+            font-size:9pt;
+            text-transform: uppercase;
+
+        }
+        #larger-text:hover {
+            font-size:9pt;
+            text-transform: uppercase;
+            text-decoration: underline;
+            cursor:pointer;
+        }
+
+        #right {
+          width:100%;
+          height:100%;
+        }
+
+        #questions-area {
+          display:flex;
+          flex-direction: column;
+          height:100%;
+          width:100%;
+          align-items: center;
+          /* background-color:red; */
+        }
+
+        .question {
+          width:90%;
+          height:200px;
+          /* background-color:green; */
+          margin:20px 0px 20px 0px;
+          border-width:2px;
+          border-style:solid;
+          border-color:rgba(53, 75, 132, 0.1);
+          border-radius:10px;
+        }
+
+        .number  {
+          position:relative;
+          display:flex;
+          align-items: center;
+          justify-content: center;
+          width:40px;
+          height:40px;
+          background-color:#354B85;
+          border-width:2px;
+          border-style:solid;
+          border-color:white;
+          color:white;
+          top:75px;
+          left:-20px;
+          border-radius:50%;
+        }
+
+        .question-title {
+          font-size:18px;
+          margin-top:10px;
+        }
+
+        .question-input {
+          height:25px;
+          width:50%;
+        }
+        .question-content {
+          margin-left:50px;
+        }
+
+    </style>
+  </head>
+  <body>
+  <!-- HTML -->
+  <div id="content">
+    <div id="sidenav"></div>
+    <div id="main-content">
+      <div id="main-header">
+          <svg viewBox="0 0 100 80" width="40" height="40" id="hamburger">
+              <rect width="100" height="20"></rect>
+              <rect y="30" width="100" height="20"></rect>
+              <rect y="60" width="100" height="20"></rect>
+          </svg>
+          <h3>Place an Order</h1>
+      </div>
+      <div id="box">
+        <div id="tabs">
+            <div class="tab">Options</div>
+            <div class="tab selected">Questions</div>
+            <div class="tab">Coupons</div>
+            <div class="tab">Approve Artwork</div>
+            <div class="tab">Order Detail</div>
+            <div class="tab x">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
+            </div>
+        </div>
+        <div id="box-content">
+          <div id="left">
+            <div id="thumb-area">
+              <img src="https://www.themailshark.com/prepress/img/expiration.jpg" id="thumb"> <!-- https://clienttest.themailshark.net/franchisepromoF/Thumbnails/CouponThumbnail_1_12082_dm_scratch_off_test.jpg -->
+              <div id="view-larger">
+                  <p id="larger-text">View Larger</p>
+              </div>
+            </div>
+          </div>
+          <div id="right">
+            <div id="questions-area">
+              <div class="question">
+                <div class="number">1</div>
+                <div class="question-content">
+                  <h5 class="question-title">When will your coupons expire?</h5>
+                  <input type="text" class="question-input" id="expiration" />
+                </div>
+              </div>
+              <div class="question">
+                <div class="number">2</div>
+                <div class="question-content">
+                  <h5 class="question-title">What price are you offering your Medium Specialty Pizza for?</h5>
+                  <input type="text" class="question-input" id="offer" />
+                </div>
+              </div>
+              <div class="question">
+                <div class="number">3</div>
+                <div class="question-content">
+                  <h5 class="question-title">What text would you like to display as the disclaimer?</h5>
+                  <input type="text" class="question-input" id="disclaimer" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+      
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+  <script>
+    // JavaScript
+    $(".question-input").focus(function() {
+      var whichInput = $(this).attr("id");
+        switch (whichInput) {
+          case "expiration":
+            var switchImage = "expiration.jpg";
+            break;
+          case "offer":
+            var switchImage = "offer.jpg";
+            break;
+          case "disclaimer":
+            var switchImage = "disclaimer.jpg";
+            break;
+        }
+        var url = "https://www.themailshark.com/prepress/img/" + switchImage;
+
+        $("#thumb").fadeOut(100, function() {
+          $(this).attr("src", url).fadeIn(100);
+        });
+    })
+
+  </script>
+  </body>
+</html>
